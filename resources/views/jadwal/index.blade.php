@@ -1,20 +1,41 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
 @section('content_header')
     Dashboard
 @endsection
 
-@stop
-
-@section('content')
-Halaman Data Jadwal Dokter
-@stop
-
 @section('css')
 
-@stop
+@endsection
 
 @section('js')
 
-@stop
+@endsection
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">{{ __('Dashboard') }}</div>
+
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+                        @role('admin')
+                            Data Jadwal Admin {{ \Laratrust::hasRole('admin') }}
+                        @endrole
+
+                        @role('member')
+                            Data Jadwal Member {{ \Laratrust::hasRole('member') }}
+                        @endrole
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

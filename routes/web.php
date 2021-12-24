@@ -46,11 +46,11 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member|admin'
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('jadwal', function () {
         return view('jadwal.index');
-    })->middleware(['role:admin|member']);
+    })->middleware(['role:admin']);
 
     Route::get('keluhan', function () {
         return view('keluhan.index');
-    })->middleware(['role:admin|member']);
+    })->middleware(['role:admin']);
 
     Route::get('laporan', function () {
         return view('laporan.index');
@@ -58,10 +58,29 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('pendaftaran', function () {
         return view('pendaftaran.index');
-    })->middleware(['role:admin|member']);
+    })->middleware(['role:admin']);
 
     Route::get('ruang', function () {
         return view('ruang.index');
-    })->middleware(['role:admin|member']);
+    })->middleware(['role:admin']);
+
+});
+
+Route::group(['prefix' => 'member', 'middleware' => ['auth']], function () {
+    Route::get('jadwal', function () {
+        return view('jadwal.index');
+    })->middleware(['role:member|admin']);
+
+    Route::get('keluhan', function () {
+        return view('keluhan.index');
+    })->middleware(['role:member|admin']);
+
+    Route::get('pendaftaran', function () {
+        return view('pendaftaran.index');
+    })->middleware(['role:member|admin']);
+
+    Route::get('ruang', function () {
+        return view('ruang.index');
+    })->middleware(['role:member|admin']);
 
 });
