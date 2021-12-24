@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 });
 
 //hanya untuk role member
-Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member']], function () {
+Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member|admin']], function () {
     Route::get('/', function () {
         return 'halaman member';
     });
@@ -41,4 +41,27 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member']], fu
     route::get('profile', function () {
         return 'halaman profile member';
     });
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::get('jadwal', function () {
+        return view('jadwal.index');
+    })->middleware(['role:admin|member']);
+
+    Route::get('keluhan', function () {
+        return view('keluhan.index');
+    })->middleware(['role:admin|member']);
+
+    Route::get('laporan', function () {
+        return view('laporan.index');
+    })->middleware(['role:admin']);
+
+    Route::get('pendaftaran', function () {
+        return view('pendaftaran.index');
+    })->middleware(['role:admin|member']);
+
+    Route::get('ruang', function () {
+        return view('ruang.index');
+    })->middleware(['role:admin|member']);
+
 });

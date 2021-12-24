@@ -1,9 +1,13 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    Dashboard
+@endsection
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -20,7 +24,7 @@
                         @role('member')
                             <p>Halaman Member</p>
                         @endrole
-                        {{ __('You are logged in!') }}
+
                     </div>
                 </div>
             </div>
