@@ -265,6 +265,11 @@ return [
             'icon' => 'fas fa-server',
         ],
         [
+            'text' => 'Pendaftaran',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-server',
+        ],
+        [
             'text' => 'Jadwal Dokter',
             'url' => 'admin/settings',
             'icon' => 'fas fa-user-md',

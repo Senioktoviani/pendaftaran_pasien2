@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JadwalDokterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,16 +45,14 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member|admin'
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('jadwal', function () {
-        return view('jadwal.index');
-    })->middleware(['role:admin']);
+    Route::resource('jadwal', JadwalDokterController::class);
 
     Route::get('keluhan', function () {
         return view('keluhan.index');
     })->middleware(['role:admin']);
 
     Route::get('laporan', function () {
-        return view('laporan.index');
+        return view('laporanpendaftaran.index');
     })->middleware(['role:admin']);
 
     Route::get('pendaftaran', function () {
@@ -68,7 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'member', 'middleware' => ['auth']], function () {
     Route::get('jadwal', function () {
-        return view('jadwal.index');
+        return view('jadwaldokter.index');
     })->middleware(['role:member|admin']);
 
     Route::get('keluhan', function () {
