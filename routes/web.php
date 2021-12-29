@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\JadwalDokterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/', function () {
         return 'halaman admin';
     });
-
-    route::get('profile', function () {
-        return 'halaman profile admin';
-    });
+    Route::resource('jadwal', JadwalDokterController::class);
 });
 
 //hanya untuk role member
@@ -42,27 +38,6 @@ Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member|admin'
     route::get('profile', function () {
         return 'halaman profile member';
     });
-});
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::resource('jadwal', JadwalDokterController::class);
-
-    Route::get('keluhan', function () {
-        return view('keluhan.index');
-    })->middleware(['role:admin']);
-
-    Route::get('laporan', function () {
-        return view('laporanpendaftaran.index');
-    })->middleware(['role:admin']);
-
-    Route::get('pendaftaran', function () {
-        return view('pendaftaran.index');
-    })->middleware(['role:admin']);
-
-    Route::get('ruang', function () {
-        return view('ruang.index');
-    })->middleware(['role:admin']);
-
 });
 
 Route::group(['prefix' => 'member', 'middleware' => ['auth']], function () {

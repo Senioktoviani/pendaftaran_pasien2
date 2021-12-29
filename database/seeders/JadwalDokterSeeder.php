@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\JadwalDokter;
 use Illuminate\Database\Seeder;
 
-class JadwalSeeder extends Seeder
+class JadwalDokterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,14 @@ class JadwalSeeder extends Seeder
     public function run()
     {
         //
-        $jadwal1 = JadwalDokter::create(['nama_dokter' => 'Dr.Sansan', 'waktu_mulai' => "jam 10",
-            'waktu_akhir' => "jam 12"]);
+        $jadwal1 = JadwalDokter::create(['nama_dokter' => 'Dr Sansan', 'waktu_mulai' => 'jam 10',
+            'waktu_akhir' => 'jam 12']);
 
-        $jadwal2 = JadwalDokter::create(['nama_dokter' => 'Dr.Sindy', 'waktu_mulai' => "jam 11",
-            'waktu_akhir' => "jam 13"]);
+        $jadwal2 = JadwalDokter::create(['nama_dokter' => 'Dr Sindy', 'waktu_mulai' => 'jam 09',
+            'waktu_akhir' => 'jam 13']);
 
-        $jadwa31 = JadwalDokter::create(['nama_dokter' => 'Dr.Sani', 'waktu_mulai' => "jam 12",
-            'waktu_akhir' => "jam 14"]);
+        $jadwal3 = JadwalDokter::create(['nama_dokter' => 'Dr Sani', 'waktu_mulai' => 'jam 08',
+            'waktu_akhir' => 'jam 14']);
 
     }
 }

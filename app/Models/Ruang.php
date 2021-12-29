@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ruang extends Model
+class Ruang extends Model
 {
     use HasFactory;
+    protected $table = "ruangs";
+    protected $visible = ['keterangan'];
+
+    protected $fillable = ['keterangan'];
+
+    public $timestamps = true;
 }
