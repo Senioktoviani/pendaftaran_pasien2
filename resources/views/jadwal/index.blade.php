@@ -1,6 +1,6 @@
 @extends('adminlte::page')
-@extends('layouts.admin')
-@section('header')
+
+@section('content_header')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -25,26 +25,28 @@
     </script>
 @endsection
 
+
 @section('content')
+    @include('layouts._flash')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card" style="background-color: antiquewhite">
+                <div class="card">
                     <div class="card-header">
-                        Data Jadwal Dokter
-                        <a href="{{ route('jadwaldokter.create') }}"
-                            class="btn btn-sm btn-outline-primary float-right">Tambah
+
+                        <a href="{{ route('jadwal.create') }}" class="btn btn-sm btn-primary float-right">Tambah
                             Data Jadwal</a>
                     </div>
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
-                                        <td>Nama Dokter </td>
-                                        <td>Waktu Mulai</td>
-                                        <td>Waktu Akhi</td>
+                                        <th>Nomor</th>
+                                        <th>Nama Dokter</th>
+                                        <th>Waktu Mulai</th>
+                                        <th>Waktu Akhir</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,15 +58,14 @@
                                             <td>{{ $data->waktu_mulai }}</td>
                                             <td>{{ $data->waktu_akhir }}</td>
                                             <td>
-                                                <form action="{{ route('jadwaldokter.destroy', $data->id) }}"
-                                                    method="post">
+                                                <form action="{{ route('jadwal.destroy', $data->id) }}" method="post">
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{ route('jadwaldokter.edit', $data->id) }}"
-                                                        class="btn btn-outline-info">Edit</a>
-                                                    <a href="{{ route('jadwaldokter.show', $data->id) }}"
-                                                        class="btn btn-outline-warning">Show</a>
-                                                    <button type="submit" class="btn btn-outline-danger"
+                                                    <a href="{{ route('jadwal.edit', $data->id) }}"
+                                                        class="btn btn-info">Edit</a>
+                                                    <a href="{{ route('jadwal.show', $data->id) }}"
+                                                        class="btn btn-warning">Show</a>
+                                                    <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
                                                 </form>
                                             </td>
@@ -79,10 +80,3 @@
         </div>
     </div>
 @endsection
-
-
-
-
-@role('member')
-    Data Jadwal Member {{ \Laratrust::hasRole('member') }}
-@endrole

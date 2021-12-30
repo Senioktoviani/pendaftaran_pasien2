@@ -248,7 +248,7 @@ return [
         ],
         [
             'text' => 'Ruang',
-            'url' => 'admin/pages',
+            'url' => 'admin/ruang',
             'icon' => 'fas fa-hospital',
             'label_color' => 'success',
         ],
@@ -271,7 +271,7 @@ return [
         ],
         [
             'text' => 'Jadwal Dokter',
-            'url' => 'admin/settings',
+            'url' => 'admin/jadwal',
             'icon' => 'fas fa-user-md',
         ],
 

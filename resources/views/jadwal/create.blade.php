@@ -1,15 +1,4 @@
-@extends('layouts.admin')
-@section('header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0">Tambah Data Jadwal Dokter</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+@extends('adminlte::page')
 
 @section('content')
     <div class="container">
@@ -18,11 +7,12 @@
                 <div class="card">
                     <div class="card-header">Data Jadwal Dokter</div>
                     <div class="card-body">
-                        <form action="{{ route('jadwaldokter.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('jadwal.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="">Masukan Nama Dokter</label>
-                                <input type="text" name="nama_dokter" class="form-control @error('nama_dokter') is-invalid @enderror">
+                                <input type="text" name="nama_dokter"
+                                    class="form-control @error('nama_dokter') is-invalid @enderror">
                                 @error('nama_dokter')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,8 +30,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan waktu Berakhir</label>
-                                <input type="date" name="waktu_akhir"
+                                <label for="">Masukan Waktu Berakhir</label>
+                                <input type="text" name="waktu_akhir"
                                     class="form-control @error('waktu_akhir') is-invalid @enderror">
                                 @error('waktu_akhir')
                                     <span class="invalid-feedback" role="alert">
@@ -59,4 +49,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+
+@endsection
+
+@section('js')
+
 @endsection
