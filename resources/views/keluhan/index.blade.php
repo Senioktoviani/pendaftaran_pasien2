@@ -1,7 +1,15 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    Dashboard
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0">Data Keluhan</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
@@ -17,38 +25,43 @@
     </script>
 @endsection
 
+
 @section('content')
+    @include('layouts._flash')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">
 
+                        <a href="{{ route('keluhan.create') }}" class="btn btn-sm btn-primary float-right">Tambah
+                            Data Keluhan</a>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
-                                        <td>Kode </td>
-                                        <td>Nama Keluhan</td>
-                                        <td>Aksi</td>
+                                        <th>Nomor</th>
+                                        <th>Nama Keluhan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1; @endphp
-                                    @foreach ($jadwal as $data)
+                                    @foreach ($keluhan as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->keluhan }}</td>
+                                            <td>{{ $data->nama_keluhan }}</td>
                                             <td>
                                                 <form action="{{ route('keluhan.destroy', $data->id) }}" method="post">
                                                     @method('delete')
                                                     @csrf
                                                     <a href="{{ route('keluhan.edit', $data->id) }}"
-                                                        class="btn btn-outline-info">Edit</a>
+                                                        class="btn btn-info">Edit</a>
                                                     <a href="{{ route('keluhan.show', $data->id) }}"
-                                                        class="btn btn-outline-warning">Show</a>
-                                                    <button type="submit" class="btn btn-outline-danger"
+                                                        class="btn btn-warning">Show</a>
+                                                    <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
                                                 </form>
                                             </td>
@@ -57,22 +70,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        @role('admin')
-                            Data Keluhan Admin {{ \Laratrust::hasRole('admin') }}
-                        @endrole
-
-                        @role('member')
-                            Data Keluhan Member {{ \Laratrust::hasRole('member') }}
-                        @endrole
                     </div>
                 </div>
             </div>

@@ -254,7 +254,7 @@ return [
         ],
         [
             'text' => 'Data Keluhan',
-            'url' => 'admin/pages',
+            'url' => 'admin/keluhan',
             'icon' => 'fas fa-thermometer-half',
             'label_color' => 'success',
         ],
