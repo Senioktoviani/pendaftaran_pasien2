@@ -266,7 +266,7 @@ return [
         ],
         [
             'text' => 'Pendaftaran',
-            'url' => 'admin/settings',
+            'url' => 'admin/pendaftaran',
             'icon' => 'fas fa-server',
         ],
         [

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             JadwalDokterSeeder::class,
             KeluhanSeeder::class,
             RuangSeeder::class,
+            PendaftaranSeeder::class,
         ]);
 
     }

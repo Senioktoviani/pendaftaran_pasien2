@@ -15,4 +15,8 @@ class Jadwaldokter extends Model
 
     public $timestamps = true;
 
+    public function jadwal()
+    {
+        $this->hasMany('App\Models\Pendaftaran', 'id_dokter');
+    }
 }

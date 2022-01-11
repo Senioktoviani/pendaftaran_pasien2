@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\KeluhanController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RuangController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('jadwal', JadwalDokterController::class);
     Route::resource('ruang', RuangController::class);
     Route::resource('keluhan', KeluhanController::class);
+    Route::resource('pendaftaran', PendaftaranController::class);
 
 });
 

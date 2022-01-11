@@ -14,4 +14,9 @@ class Ruang extends Model
     protected $fillable = ['keterangan'];
 
     public $timestamps = true;
+
+    public function ruang()
+    {
+        $this->hasMany('App\Models\Pendaftaran', 'id_ruang');
+    }
 }

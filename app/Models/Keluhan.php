@@ -15,4 +15,8 @@ class Keluhan extends Model
 
     public $timestamps = true;
 
+    public function keluhan()
+    {
+        $this->hasMany('App\Models\Pendaftaran', 'id_keluhan');
+    }
 }

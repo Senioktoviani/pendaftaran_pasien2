@@ -16,17 +16,20 @@ class CreatePendaftaransTable extends Migration
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pasien');
-            $table->bigInteger('keluhan')->unsigned();
-            $table->foreign('keluhan')->references('id')
+            $table->bigInteger('id_keluhan')->unsigned();
+            $table->foreign('id_keluhan')->references('id')
                 ->on('keluhans')->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->date('tanggal_daftar');
+            $table->string('tanggal_daftar');
             $table->string('no_telepon');
-            $table->string('nama_dokter');
+            $table->bigInteger('id_dokter')->unsigned();
+            $table->foreign('id_dokter')->references('id')
+                ->on('jadwal_dokters')->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('jk');
-            $table->date('jadwal_periksa');
-            $table->bigInteger('ruang')->unsigned();
-            $table->foreign('ruang')->references('id')
+            $table->string('jadwal_periksa');
+            $table->bigInteger('id_ruang')->unsigned();
+            $table->foreign('id_ruang')->references('id')
                 ->on('ruangs')->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('cara_bayar');
