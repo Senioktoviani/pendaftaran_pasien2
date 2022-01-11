@@ -258,12 +258,13 @@ return [
             'icon' => 'fas fa-thermometer-half',
             'label_color' => 'success',
         ],
-        ['header' => 'Report'],
         [
-            'text' => 'Laporan Pendaftaran',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-server',
+            'text' => 'Data Spesialis',
+            'url' => 'admin/spesialis',
+            'icon' => 'fas fa-thermometer-half',
+            'label_color' => 'success',
         ],
+        ['header' => 'Report'],
         [
             'text' => 'Pendaftaran',
             'url' => 'admin/pendaftaran',
@@ -272,6 +273,11 @@ return [
         [
             'text' => 'Jadwal Dokter',
             'url' => 'admin/jadwal',
+            'icon' => 'fas fa-user-md',
+        ],
+        [
+            'text' => 'Data Dokter',
+            'url' => 'admin/dokter',
             'icon' => 'fas fa-user-md',
         ],
 

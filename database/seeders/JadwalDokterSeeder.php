@@ -15,14 +15,14 @@ class JadwalDokterSeeder extends Seeder
     public function run()
     {
         //
-        $jadwal1 = JadwalDokter::create(['nama_dokter' => 'Dr Sansan', 'waktu_mulai' => 'jam 10',
-            'waktu_akhir' => 'jam 12']);
+        $jadwal1 = JadwalDokter::create(['nama_dokter' => 'Dr Sansan', 'waktu_mulai' => '10.00 WIB',
+            'waktu_akhir' => '12.00 WIB']);
 
-        $jadwal2 = JadwalDokter::create(['nama_dokter' => 'Dr Sindy', 'waktu_mulai' => 'jam 09',
-            'waktu_akhir' => 'jam 13']);
+        $jadwal2 = JadwalDokter::create(['nama_dokter' => 'Dr Sindy', 'waktu_mulai' => '09.00 WIB',
+            'waktu_akhir' => '13.00 WIB']);
 
-        $jadwal3 = JadwalDokter::create(['nama_dokter' => 'Dr Sani', 'waktu_mulai' => 'jam 08',
-            'waktu_akhir' => 'jam 14']);
+        $jadwal3 = JadwalDokter::create(['nama_dokter' => 'Dr Sani', 'waktu_mulai' => '08.00 WIB',
+            'waktu_akhir' => '14.00 WIB']);
 
     }
 }

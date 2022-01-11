@@ -4,6 +4,7 @@ use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\SpesialisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('ruang', RuangController::class);
     Route::resource('keluhan', KeluhanController::class);
     Route::resource('pendaftaran', PendaftaranController::class);
+    Route::resource('spesialis', SpesialisController::class);
 
 });
 
