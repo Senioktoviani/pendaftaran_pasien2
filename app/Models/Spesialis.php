@@ -14,4 +14,9 @@ class Spesialis extends Model
     protected $fillable = ['spesialis'];
 
     public $timestamps = true;
+
+    public function spesialis()
+    {
+        $this->hasMany('App\Models\DataDokter', 'id_spesialis');
+    }
 }
