@@ -21,7 +21,7 @@ class JadwalDokterSeeder extends Seeder
         $jadwal2 = JadwalDokter::create(['nama_dokter' => 'Dr Sindy', 'waktu_mulai' => '09.00 WIB',
             'waktu_akhir' => '13.00 WIB']);
 
-        $jadwal3 = JadwalDokter::create(['nama_dokter' => 'Dr Sani', 'waktu_mulai' => '08.00 WIB',
+        $jadwal3 = JadwalDokter::create(['nama_dokter' => 'Dr Jamal', 'waktu_mulai' => '08.00 WIB',
             'waktu_akhir' => '14.00 WIB']);
 
     }

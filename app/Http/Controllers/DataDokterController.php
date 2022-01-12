@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataDokter;
+use App\Models\JadwalDokter;
+use App\Models\Spesialis;
 use Illuminate\Http\Request;
 
 class DataDokterController extends Controller
@@ -14,7 +16,8 @@ class DataDokterController extends Controller
      */
     public function index()
     {
-        //
+        $dokter = DataDokter::with('jadwal', 'spesialis')->get();
+        return view('dokter.index', compact('dokter'));
     }
 
     /**
@@ -24,7 +27,10 @@ class DataDokterController extends Controller
      */
     public function create()
     {
-        //
+
+        $jadwal = JadwalDokter::all();
+        $dokter = DataDokter::all();
+        return view('dokter.create', compact('jadwal', 'dokter'));
     }
 
     /**
@@ -35,18 +41,37 @@ class DataDokterController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
 
+            'nik' => 'required',
+            'id_dokter' => 'required',
+            'jk' => 'required',
+            'id_spesialis' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        $dokter = new DataDokter;
+        $dokter->nik = $request->nik;
+        $dokter->id_dokter = $request->id_dokter;
+        $dokter->jk = $request->jk;
+        $dokter->no_telepon = $request->no_telepon;
+        $dokter->id_spesialis = $request->id_spesialis;
+        $dokter->alamat = $request->alamat;
+        $dokter->save();
+        return redirect()->route('dokter.index');
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\DataDokter  $dataDokter
      * @return \Illuminate\Http\Response
      */
-    public function show(DataDokter $dataDokter)
+    public function show($id)
     {
-        //
+        $dokter = DataDokter::findOrFail($id);
+        $jadwal = JadwalDokter::all();
+        $spesialis = Spesialis::all();
+        return view('dokter.show', compact('dokter', 'jadwal', 'spesialis'));
     }
 
     /**
@@ -55,9 +80,12 @@ class DataDokterController extends Controller
      * @param  \App\Models\DataDokter  $dataDokter
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataDokter $dataDokter)
+    public function edit($id)
     {
-        //
+        $dokter = DataDokter::findOrFail($id);
+        $jadwal = JadwalDokter::all();
+        $spesialis = Spesialis::all();
+        return view('dokter.edit', compact('dokter', 'jadwal', 'spesialis'));
     }
 
     /**
@@ -67,9 +95,27 @@ class DataDokterController extends Controller
      * @param  \App\Models\DataDokter  $dataDokter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataDokter $dataDokter)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+
+            'nik' => 'required',
+            'id_dokter' => 'required',
+            'jk' => 'required',
+            'id_spesialis' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        $dokter = new DataDokter;
+        $dokter->nik = $request->nik;
+        $dokter->id_dokter = $request->id_dokter;
+        $dokter->jk = $request->jk;
+        $dokter->no_telepon = $request->no_telepon;
+        $dokter->id_spesialis = $request->id_spesialis;
+        $dokter->alamat = $request->alamat;
+        $dokter->save();
+        return redirect()->route('dokter.index');
+
     }
 
     /**
@@ -78,8 +124,10 @@ class DataDokterController extends Controller
      * @param  \App\Models\DataDokter  $dataDokter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataDokter $dataDokter)
+    public function destroy($id)
     {
-        //
+        $dokter = DataDokter::findOrFail($id);
+        $dokter->delete();
+        return redirect()->route('dokter.index');
     }
 }

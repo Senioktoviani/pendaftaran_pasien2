@@ -12,9 +12,9 @@
                             @method('put')
                             <div class="form-group">
                                 <label for="">Masukan Nama spesialis</label>
-                                <input type="text" name="spesialis" value="{{ $spesialis->spesialis }}"
-                                    class="form-control @error('spesialis') is-invalid @enderror">
-                                @error('spesialis')
+                                <input type="text" name="nama_spesialis" value="{{ $spesialis->nama_spesialis }}"
+                                    class="form-control @error('nama_spesialis') is-invalid @enderror">
+                                @error('nama_spesialis')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

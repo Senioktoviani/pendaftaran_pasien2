@@ -48,7 +48,7 @@ class PendaftaranController extends Controller
             'id_keluhan' => 'required',
             'tanggal_daftar' => 'required',
             'no_telepon' => 'required',
-            'nama_dokter' => 'required',
+            'id_dokter' => 'required',
             'jk' => 'required',
             'jadwal_periksa' => 'required',
             'id_ruang' => 'required',
@@ -60,7 +60,7 @@ class PendaftaranController extends Controller
         $pendaftaran->id_keluhan = $request->id_keluhan;
         $pendaftaran->tanggal_daftar = $request->tanggal_daftar;
         $pendaftaran->no_telepon = $request->no_telepon;
-        $pendaftaran->nama_dokter = $request->nama_dokter;
+        $pendaftaran->id_dokter = $request->id_dokter;
         $pendaftaran->jk = $request->jk;
         $pendaftaran->jadwal_periksa = $request->jadwal_periksa;
         $pendaftaran->id_ruang = $request->id_ruang;
@@ -114,7 +114,7 @@ class PendaftaranController extends Controller
             'id_keluhan' => 'required',
             'tanggal_daftar' => 'required',
             'no_telepon' => 'required',
-            'nama_dokter' => 'required',
+            'id_dokter' => 'required',
             'jk' => 'required',
             'jadwal_periksa' => 'required',
             'id_ruang' => 'required',
@@ -126,7 +126,7 @@ class PendaftaranController extends Controller
         $pendaftaran->id_keluhan = $request->id_keluhan;
         $pendaftaran->tanggal_daftar = $request->tanggal_daftar;
         $pendaftaran->no_telepon = $request->no_telepon;
-        $pendaftaran->nama_dokter = $request->nama_dokter;
+        $pendaftaran->id_dokter = $request->id_dokter;
         $pendaftaran->jk = $request->jk;
         $pendaftaran->jadwal_periksa = $request->jadwal_periksa;
         $pendaftaran->id_ruang = $request->id_ruang;

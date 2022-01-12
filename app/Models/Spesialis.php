@@ -9,9 +9,9 @@ class Spesialis extends Model
 {
     use HasFactory;
     protected $table = "spesialis";
-    protected $visible = ['spesialis'];
+    protected $visible = ['nanma_spesialis'];
 
-    protected $fillable = ['spesialis'];
+    protected $fillable = ['nanma_spesialis'];
 
     public $timestamps = true;
 

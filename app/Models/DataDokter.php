@@ -21,6 +21,6 @@ class DataDokter extends Model
     }
     public function spesialis()
     {
-        return $this->belongsTo('App\Models\JadwalDokter', 'id_spesialis');
+        return $this->belongsTo('App\Models\Spesialis', 'id_spesialis');
     }
 }

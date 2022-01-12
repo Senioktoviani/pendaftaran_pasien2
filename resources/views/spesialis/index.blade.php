@@ -52,7 +52,7 @@
                                     @foreach ($spesialis as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->spesialis }}</td>
+                                            <td>{{ $data->nama_spesialis }}</td>
                                             <td>
                                                 <form action="{{ route('spesialis.destroy', $data->id) }}" method="post">
                                                     @method('delete')

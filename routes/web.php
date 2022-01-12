@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataDokterController;
 use App\Http\Controllers\JadwalDokterController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\PendaftaranController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('keluhan', KeluhanController::class);
     Route::resource('pendaftaran', PendaftaranController::class);
     Route::resource('spesialis', SpesialisController::class);
+    Route::resource('dokter', DataDokterController::class);
 
 });
 

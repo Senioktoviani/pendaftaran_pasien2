@@ -15,7 +15,7 @@ class CreateSpesialisTable extends Migration
     {
         Schema::create('spesialis', function (Blueprint $table) {
             $table->id();
-            $table->string('spesialis');
+            $table->string('nama_spesialis');
             $table->timestamps();
         });
     }

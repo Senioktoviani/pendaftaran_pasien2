@@ -11,9 +11,9 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Masukan Nama spesialis</label>
-                                <input type="text" name="spesialis"
-                                    class="form-control @error('spesialis') is-invalid @enderror">
-                                @error('spesialis')
+                                <input type="text" name="nama_spesialis"
+                                    class="form-control @error('nama_spesialis') is-invalid @enderror">
+                                @error('nama_spesialis')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
