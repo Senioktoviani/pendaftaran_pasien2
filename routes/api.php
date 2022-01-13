@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('keluhan2', [KeluhanController::class, 'index']);
+Route::resource('keluhan2', ApiController::class);

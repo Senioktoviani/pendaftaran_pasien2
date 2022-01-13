@@ -6,6 +6,7 @@ use App\Models\DataDokter;
 use App\Models\JadwalDokter;
 use App\Models\Spesialis;
 use Illuminate\Http\Request;
+use Session;
 
 class DataDokterController extends Controller
 {
@@ -30,7 +31,8 @@ class DataDokterController extends Controller
 
         $jadwal = JadwalDokter::all();
         $dokter = DataDokter::all();
-        return view('dokter.create', compact('jadwal', 'dokter'));
+        $spesialis = Spesialis::all();
+        return view('dokter.create', compact('jadwal', 'dokter', 'spesialis'));
     }
 
     /**
@@ -50,14 +52,18 @@ class DataDokterController extends Controller
             'alamat' => 'required',
         ]);
 
-        $dokter = new DataDokter;
+        $dokter = DataDokter::findOrFail($id);
         $dokter->nik = $request->nik;
         $dokter->id_dokter = $request->id_dokter;
         $dokter->jk = $request->jk;
-        $dokter->no_telepon = $request->no_telepon;
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Data saved successfully",
+        ]);
+
         return redirect()->route('dokter.index');
     }
     /**
@@ -106,14 +112,18 @@ class DataDokterController extends Controller
             'alamat' => 'required',
         ]);
 
-        $dokter = new DataDokter;
+        $dokter = DataDokter::findOrFail($id);
         $dokter->nik = $request->nik;
         $dokter->id_dokter = $request->id_dokter;
         $dokter->jk = $request->jk;
-        $dokter->no_telepon = $request->no_telepon;
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Data saved successfully",
+        ]);
+
         return redirect()->route('dokter.index');
 
     }

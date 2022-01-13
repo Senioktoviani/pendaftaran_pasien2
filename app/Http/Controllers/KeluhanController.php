@@ -16,13 +16,14 @@ class KeluhanController extends Controller
     public function index()
     {
         $keluhan = Keluhan::all();
+        return view('keluhan.index', compact('keluhan'));
 
         //ubah ke JSON
-        return response()->json([
-            'succes' => true,
-            'message' => 'list Data Keluhan',
-            'data' => $keluhan,
-        ], 200);
+        // return response()->json([
+        //  'succes' => true,
+        // 'message' => 'list Data Keluhan',
+        // 'data' => $keluhan,
+        // ], 200);
 
     }
 
