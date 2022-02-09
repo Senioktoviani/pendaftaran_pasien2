@@ -42,8 +42,8 @@
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
-                                        <th>Lantai</th>
-                                        <th>Keterangan</th>
+                                        <th>No</th>
+                                        <th>Nama Ruangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>

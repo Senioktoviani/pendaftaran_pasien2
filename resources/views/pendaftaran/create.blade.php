@@ -31,7 +31,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan Keluhan</label>
+                                <label for="">Pilih Keluhan</label>
                                 <select name="id_keluhan" class="form-control @error('id_keluhan') is-invalid @enderror">
                                     @foreach ($keluhan as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_keluhan }}</option>
@@ -64,7 +64,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan Nama Dokter</label>
+                                <label for="">Pilih Nama Dokter</label>
                                 <select name="id_dokter" class="form-control @error('id_dokter') is-invalid @enderror">
                                     @foreach ($jadwal as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_dokter }}</option>
@@ -96,7 +96,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan No Ruang</label>
+                                <label for="">Pilih Ruangan</label>
                                 <select name="id_ruang" class="form-control @error('id_ruang') is-invalid @enderror">
                                     @foreach ($ruang as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
