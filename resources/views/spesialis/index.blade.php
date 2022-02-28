@@ -17,6 +17,28 @@
 @endsection
 
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-confirm").click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -34,7 +56,8 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{ route('spesialis.create') }}" class="btn btn-sm btn-primary float-right">Tambah
+                        <a href="{{ route('spesialis.create') }}"
+                            class="btn btn-sm btn-outline-primary float-right">Tambah
                             Data Spesialis</a>
                     </div>
                     <div class="card-body">
@@ -58,11 +81,11 @@
                                                     @method('delete')
                                                     @csrf
                                                     <a href="{{ route('spesialis.edit', $data->id) }}"
-                                                        class="btn btn-info">Edit</a>
+                                                        class="btn btn-outline-info">Edit</a>
                                                     <a href="{{ route('spesialis.show', $data->id) }}"
-                                                        class="btn btn-warning">Show</a>
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah anda yakin menghapus ini?');">Delete</button>
+                                                        class="btn btn-outline-warning">Show</a>
+                                                    <button type="submit"
+                                                        class="btn btn-danger delete-confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -32,6 +32,10 @@ class CreatePendaftaransTable extends Migration
             $table->foreign('id_ruang')->references('id')
                 ->on('ruangs')->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->bigInteger('id_kamar')->unsigned();
+            $table->foreign('id_kamar')->references('id')
+                ->on('kamars')->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('cara_bayar');
             $table->timestamps();
         });

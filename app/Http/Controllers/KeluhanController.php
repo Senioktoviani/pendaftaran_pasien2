@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Keluhan;
 use Illuminate\Http\Request;
 use Session;
+use Alert;
 
 class KeluhanController extends Controller
 {
@@ -52,10 +53,8 @@ class KeluhanController extends Controller
         $keluhan = new Keluhan;
         $keluhan->nama_keluhan = $request->nama_keluhan;
         $keluhan->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
+
         return redirect()->route('keluhan.index');
     }
 
@@ -99,10 +98,8 @@ class KeluhanController extends Controller
         $keluhan = Keluhan::findOrFail($id);
         $keluhan->nama_keluhan = $request->nama_keluhan;
         $keluhan->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data edited successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
+
         return redirect()->route('keluhan.index');
     }
 
@@ -114,12 +111,19 @@ class KeluhanController extends Controller
      */
     public function destroy($id)
     {
-        $keluhan = Keluhan::findOrFail($id);
-        $keluhan->delete();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data deleted successfully",
-        ]);
+        // $keluhan = Keluhan::findOrFail($id);
+
+        if (!Keluhan::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
+        return redirect()->route('keluhan.index');
+
+        // $keluhan->delete();
+        // Session::flash("flash_notification", [
+        //     "level" => "success",
+        //     "message" => "Data deleted successfully",
+        // ]);
         return redirect()->route('keluhan.index');
     }
 }

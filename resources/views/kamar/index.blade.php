@@ -1,10 +1,11 @@
 @extends('adminlte::page')
+
 @section('content_header')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Data Dokter</h1>
+                    <h1 class="m-0">Data No Kamar</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +17,8 @@
 @endsection
 
 @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script>
         $(".delete-confirm").click(function(event) {
             var form = $(this).closest("form");
@@ -53,44 +55,36 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Data Dokter
-                        <a href="{{ route('dokter.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah
-                            Data Dokter</a>
+
+                        <a href="{{ route('kamar.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah
+                            Data Kamar</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
-                                        <th>Nomor</th>
-                                        <th>NIK</th>
-                                        <th>Nama Dokter</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Spesialis</th>
-                                        <th>Alamat</th>
+                                        <th>No</th>
+                                        <th>Kamar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1; @endphp
-                                    @foreach ($dokter as $data)
+                                    @foreach ($kamar as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->nik }}</td>
-                                            <td>{{ $data->jadwal->nama_dokter }}</td>
-                                            <td>{{ $data->jk }}</td>
-                                            <td>{{ $data->spesialis->nama_spesialis }}</td>
-                                            <td>{{ $data->alamat }}</td>
+                                            <td>{{ $data->nama_kamar }}</td>
                                             <td>
-                                                <form action="{{ route('dokter.destroy', $data->id) }}" method="post">
+                                                <form action="{{ route('kamar.destroy', $data->id) }}" method="post">
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{ route('dokter.edit', $data->id) }}"
+                                                    <a href="{{ route('kamar.edit', $data->id) }}"
                                                         class="btn btn-outline-info">Edit</a>
-                                                    <a href="{{ route('dokter.show', $data->id) }}"
+                                                    <a href="{{ route('kamar.show', $data->id) }}"
                                                         class="btn btn-outline-warning">Show</a>
                                                     <button type="submit"
-                                                        class="btn btn-outline-danger delete-confirm">Delete</button>
+                                                        class="btn btn-danger delete-confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -103,17 +97,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
-@endsection
-
-@section('js')
-    <script src="{{ asset('Datatables/datatables.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
 @endsection

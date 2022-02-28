@@ -35,8 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Tanggal Daftar</label>
-                                <input type="text" name="tanggal_daftar" value="{{ $pendaftaran->tanggal_daftar }}"
-                                    class="form-control @error('tanggal_daftar') is-invalid @enderror">
+                                <input type="date" name="tanggal_daftar" class="form-control">
                                 @error('tanggal_daftar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -67,9 +66,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan jenis Kelamin</label>
-                                <input type="text" name="jk" value="{{ $pendaftaran->jk }}"
-                                    class="form-control @error('jk') is-invalid @enderror">
+                                <label for="">Pilih Jenis Kelamin</label>
+                                <br>
+                                <input type="radio" name="jk" value="laki-laki"> Laki-laki
+                                <br>
+                                <input type="radio" name="jk" value="perempuan"> Perempuan
+                                <br>
+
                                 @error('jk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -78,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Jadwal Periksa</label>
-                                <input type="text" name="jadwal_periksa" value="{{ $pendaftaran->jadwal_periksa }}"
+                                <input type="time" name="jadwal_periksa" value="{{ $pendaftaran->jadwal_periksa }}"
                                     class="form-control @error('jadwal_periksa') is-invalid @enderror">
                                 @error('jadwal_periksa')
                                     <span class="invalid-feedback" role="alert">
@@ -87,7 +90,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Pilih Ruangan</label>
+                                <label for="">Pilih Nama Ruangan</label>
                                 <select name="id_ruang" class="form-control @error('id_ruang') is-invalid @enderror">
                                     @foreach ($ruang as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
@@ -100,9 +103,24 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan Cara Bayar</label>
-                                <input type="text" name="cara_bayar" value="{{ $pendaftaran->cara_bayar }}"
-                                    class="form-control @error('cara_bayar') is-invalid @enderror">
+                                <label for="">Pilih No kamar</label>
+                                <select name="id_kamar" class="form-control @error('id_kamar') is-invalid @enderror">
+                                    @foreach ($kamar as $data)
+                                        <option value="{{ $data->id }}">{{ $data->nama_kamar }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_kamar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="">Pilih Cara Bayar</label>
+                                <select name="cara_bayar" id="" class="form-control">
+                                    <option value="UMUM">UMUM</option>
+                                    <option value="BPJS">BPJS</option>
+                                </select>
                                 @error('cara_bayar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

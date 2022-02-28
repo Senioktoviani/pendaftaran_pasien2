@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Alert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,19 @@ class Spesialis extends Model
 
     public $timestamps = true;
 
-    public function spesialis()
+    public function dokter()
     {
-        $this->hasMany('App\Models\DataDokter', 'id_spesialis');
+        return $this->hasMany('App\Models\DataDokter', 'id_spesialis');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($spesialis) {
+            if ($spesialis->dokter->count() > 0) {
+                Alert::error('Failed', 'Data not deleted');
+                return false;
+            }
+        });
     }
 }

@@ -247,22 +247,39 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Ruang',
-            'url' => 'admin/ruang',
+            'text' => 'Ruangan',
             'icon' => 'fas fa-hospital',
-            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Ruang',
+                    'url' => 'admin/ruang',
+                    'icon' => 'fas fa-minus',
+                ],
+                [
+                    'text' => 'Kamar',
+                    'url' => 'admin/kamar',
+                    'icon' => 'fas fa-minus',
+                ],
+            ],
         ],
+
         [
             'text' => 'Data Keluhan',
             'url' => 'admin/keluhan',
             'icon' => 'fas fa-thermometer-half',
             'label_color' => 'success',
         ],
+
         [
             'text' => 'Data Spesialis',
             'url' => 'admin/spesialis',
             'icon' => 'fas fa-thermometer-half',
             'label_color' => 'success',
+        ],
+        [
+            'text' => 'Data Dokter',
+            'url' => 'admin/dokter',
+            'icon' => 'fas fa-user-md',
         ],
         ['header' => 'Report'],
         [
@@ -276,9 +293,9 @@ return [
             'icon' => 'fas fa-user-md',
         ],
         [
-            'text' => 'Data Dokter',
-            'url' => 'admin/dokter',
-            'icon' => 'fas fa-user-md',
+            'text' => 'Laporan',
+            'url' => "admin/cetak-laporan",
+            'icon' => 'far fa-folder-open',
         ],
 
     ],

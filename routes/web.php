@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DataDokterController;
 use App\Http\Controllers\JadwalDokterController;
+use App\Http\Controllers\KamarController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RuangController;
@@ -38,6 +39,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('pendaftaran', PendaftaranController::class);
     Route::resource('spesialis', SpesialisController::class);
     Route::resource('dokter', DataDokterController::class);
+    Route::resource('kamar', KamarController::class);
+
+    Route::get('/cetak-laporan', 'App\Http\Controllers\PendaftaranController@cetakForm')->name('cetak-laporan');
+    Route::get('/cetak-laporan-pertanggal/{tglawal}/{tglakhir}',
+        'App\Http\Controllers\PendaftaranController@cetakPertanggal')
+        ->name('cetak-laporan-pertanggal');
 
 });
 

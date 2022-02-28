@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Alert;
-use App\Models\Spesialis;
+use App\Models\Kamar;
 use Illuminate\Http\Request;
 
-class SpesialisController extends Controller
+class KamarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,9 @@ class SpesialisController extends Controller
      */
     public function index()
     {
-        $spesialis = Spesialis::all();
-        return view('spesialis.index', compact('spesialis'));
+        $kamar = Kamar::all();
+        return view('kamar.index', compact('kamar'));
+
     }
 
     /**
@@ -26,8 +26,7 @@ class SpesialisController extends Controller
      */
     public function create()
     {
-        return view('spesialis.create');
-
+        return view('kamar.create');
     }
 
     /**
@@ -39,84 +38,75 @@ class SpesialisController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_spesialis' => 'required',
+            'nama_kamar' => 'required',
         ]);
 
-        $spesialis = new Spesialis;
-        $spesialis->nama_spesialis = $request->nama_spesialis;
-        $spesialis->save();
+        $kamar = new kamar;
+        $kamar->nama_kamar = $request->nama_kamar;
+        $kamar->save();
         Alert::success('Good Job', 'Data Saved Successfully');
-
-        return redirect()->route('spesialis.index');
+        return redirect()->route('kamar.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Spesialis  $spesialis
+     * @param  \App\Models\Kamar  $kamar
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $spesialis = Spesialis::findOrFail($id);
-        return view('spesialis.show', compact('spesialis'));
+        $kamar = Kamar::findOrFail($id);
+        return view('kamar.show', compact('kamar'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Spesialis  $spesialis
+     * @param  \App\Models\Kamar  $kamar
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $spesialis = Spesialis::findOrFail($id);
-        return view('spesialis.edit', compact('spesialis'));
+        $kamar = Kamar::findOrFail($id);
+        return view('kamar.edit', compact('kamar'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Spesialis  $spesialis
+     * @param  \App\Models\Kamar  $kamar
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'nama_spesialis' => 'required',
+            'nama_kamar' => 'required',
         ]);
 
-        $spesialis = new Spesialis;
-        $spesialis->nama_spesialis = $request->nama_spesialis;
-        $spesialis->save();
+        $kamar = Ruang::findOrFail($id);
+        $kamar->nama_kamar = $request->nama_kamar;
+        $kamar->save();
         Alert::success('Good Job', 'Data Saved Successfully');
 
-        return redirect()->route('spesialis.index');
-
+        return redirect()->route('kamar.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Spesialis  $spesialis
+     * @param  \App\Models\Kamar  $kamar
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        // $spesialis = Spesialis::findOrFail($id);
-
-        if (!Spesialis::destroy($id)) {
+        // $ruang = Ruang::findOrFail($id);
+        if (!Kamar::destroy($id)) {
             return redirect()->back();
         }
         Alert::success('Success', 'Data deleted successfully');
-        return redirect()->route('index.index');
+        return redirect()->route('kamar.index');
 
-        // $spesialis->delete();
-        // Session::flash("flash_notification", [
-        //     "level" => "success",
-        //     "message" => "Data deleted successfully",
-        // ]);
-        return redirect()->route('spesialis.index');
     }
 }

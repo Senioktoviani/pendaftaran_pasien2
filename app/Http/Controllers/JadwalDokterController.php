@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\JadwalDokter;
 use Illuminate\Http\Request;
-use Session;
 
 class JadwalDokterController extends Controller
 {
@@ -48,10 +48,8 @@ class JadwalDokterController extends Controller
         $jadwal->waktu_mulai = $request->waktu_mulai;
         $jadwal->waktu_akhir = $request->waktu_akhir;
         $jadwal->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
+
         return redirect()->route('jadwal.index');
     }
 
@@ -99,10 +97,8 @@ class JadwalDokterController extends Controller
         $jadwal->waktu_mulai = $request->waktu_mulai;
         $jadwal->waktu_akhir = $request->waktu_akhir;
         $jadwal->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data edited successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
+
         return redirect()->route('jadwal.index');
     }
 
@@ -114,12 +110,19 @@ class JadwalDokterController extends Controller
      */
     public function destroy($id)
     {
-        $jadwal = JadwalDokter::findOrFail($id);
-        $jadwal->delete();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data deleted successfully",
-        ]);
+        // $jadwal = JadwalDokter::findOrFail($id);
+
+        if (!JadwalDokter::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
+        return redirect()->route('jadwal.index');
+
+        // $jadwal->delete();
+        // Session::flash("flash_notification", [
+        //     "level" => "success",
+        //     "message" => "Data deleted successfully",
+        // ]);
         return redirect()->route('jadwal.index');
     }
 }

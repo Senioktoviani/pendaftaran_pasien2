@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\DataDokter;
 use App\Models\JadwalDokter;
 use App\Models\Spesialis;
 use Illuminate\Http\Request;
-use Session;
 
 class DataDokterController extends Controller
 {
@@ -59,10 +59,7 @@ class DataDokterController extends Controller
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('dokter.index');
     }
@@ -119,10 +116,7 @@ class DataDokterController extends Controller
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('dokter.index');
 

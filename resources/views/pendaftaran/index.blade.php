@@ -11,6 +11,42 @@
     </div>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
+@endsection
+
+@section('js')
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-confirm").click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+    <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+@endsection
+
+
 @section('content')
     @include('layouts._flash')
     <div class="container">
@@ -36,7 +72,8 @@
                                         <th>Nama Dokter</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Jadwal Pemeriksaan</th>
-                                        <th>Ruang</th>
+                                        <th>Nama Ruangan</th>
+                                        <th>No Kamar</th>
                                         <th>Cara Bayar</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -54,6 +91,7 @@
                                             <td>{{ $data->jk }}</td>
                                             <td>{{ $data->jadwal_periksa }}</td>
                                             <td>{{ $data->Ruang->keterangan }}</td>
+                                            <td>{{ $data->Kamar->nama_kamar }}</td>
                                             <td>{{ $data->cara_bayar }}</td>
                                             <td>
                                                 <form action="{{ route('pendaftaran.destroy', $data->id) }}"
@@ -64,8 +102,8 @@
                                                         class="btn btn-outline-info">Edit</a>
                                                     <a href="{{ route('pendaftaran.show', $data->id) }}"
                                                         class="btn btn-outline-warning">Show</a>
-                                                    <button type="submit" class="btn btn-outline-danger"
-                                                        onclick="return confirm('Apakah anda yakin menghapusnya')">Delete</button>
+                                                    <button type="submit"
+                                                        class="btn btn-danger delete-confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

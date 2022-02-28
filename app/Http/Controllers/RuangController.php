@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\Ruang;
 use Illuminate\Http\Request;
-use Session;
 
 class RuangController extends Controller
 {
@@ -46,10 +46,7 @@ class RuangController extends Controller
         $ruang = new Ruang;
         $ruang->keterangan = $request->keterangan;
         $ruang->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
         return redirect()->route('ruang.index');
     }
 
@@ -93,10 +90,8 @@ class RuangController extends Controller
         $jadwal = Ruang::findOrFail($id);
         $jadwal->keterangan = $request->keterangan;
         $jadwal->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data edited successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
+
         return redirect()->route('ruang.index');
     }
 
@@ -108,12 +103,18 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
-        $ruang = Ruang::findOrFail($id);
-        $ruang->delete();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data deleted successfully",
-        ]);
+        // $ruang = Ruang::findOrFail($id);
+        if (!Ruang::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
         return redirect()->route('ruang.index');
+
+        // $ruang->delete();
+        // Session::flash("flash_notification", [
+        //     "level" => "success",
+        //     "message" => "Data deleted successfully",
+        // ]);
+        // return redirect()->route('ruang.index');
     }
 }

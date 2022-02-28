@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Alert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,19 @@ class Jadwaldokter extends Model
 
     public $timestamps = true;
 
-    public function jadwal()
+    public function pendaftaran()
     {
-        $this->hasMany('App\Models\Pendaftaran', 'id_dokter');
+        return $this->hasMany('App\Models\Pendaftaran', 'id_dokter');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($dokter) {
+            if ($dokter->pendaftaran->count() > 0) {
+                Alert::error('Failed', 'Data not deleted');
+                return false;
+            }
+        });
     }
 }

@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Waktu Mulai</label>
-                                <input type="text" name="waktu_mulai"
+                                <input type="time" name="waktu_mulai"
                                     class="form-control @error('waktu_mulai') is-invalid @enderror">
                                 @error('waktu_mulai')
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukan Waktu Berakhir</label>
-                                <input type="text" name="waktu_akhir"
+                                <input type="time" name="waktu_akhir"
                                     class="form-control @error('waktu_akhir') is-invalid @enderror">
                                 @error('waktu_akhir')
                                     <span class="invalid-feedback" role="alert">

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\JadwalDokter;
+use App\Models\Kamar;
 use App\Models\Keluhan;
 use App\Models\Pendaftaran;
 use App\Models\Ruang;
 use Illuminate\Http\Request;
-use Session;
 
 class PendaftaranController extends Controller
 {
@@ -18,7 +19,7 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $pendaftaran = Pendaftaran::with('keluhan', 'ruang', 'jadwal')->get();
+        $pendaftaran = Pendaftaran::with('keluhan', 'ruang', 'jadwal', 'kamar')->get();
         return view('pendaftaran.index', compact('pendaftaran'));
     }
 
@@ -32,8 +33,22 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
+        $kamar = Kamar::all();
+
         $pendaftaran = Pendaftaran::all();
-        return view('pendaftaran.create', compact('keluhan', 'ruang', 'jadwal'));
+        return view('pendaftaran.create', compact('keluhan', 'ruang', 'jadwal', 'kamar'));
+    }
+
+    public function cetakForm()
+    {
+        return view('pendaftaran.cetak');
+    }
+
+    public function cetakPertanggal($tglawal, $tglakhir)
+    {
+        // dd(["Tanggal Awal : ".$tglawal, "Tanggal Akhir : ".$tglakhir]);
+        $cetak = Pendaftaran::whereDate('tanggal_daftar', '>=', $tglawal)->whereDate('tanggal_daftar', '<=', $tglakhir)->get();
+        return view('pendaftaran.cetak-pertanggal', compact('cetak'));
     }
 
     /**
@@ -54,10 +69,11 @@ class PendaftaranController extends Controller
             'jk' => 'required',
             'jadwal_periksa' => 'required',
             'id_ruang' => 'required',
+            'id_kamar' => 'required',
             'cara_bayar' => 'required',
         ]);
 
-        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran = new Pendaftaran;
 
         $pendaftaran->nama_pasien = $request->nama_pasien;
         $pendaftaran->id_keluhan = $request->id_keluhan;
@@ -67,12 +83,11 @@ class PendaftaranController extends Controller
         $pendaftaran->jk = $request->jk;
         $pendaftaran->jadwal_periksa = $request->jadwal_periksa;
         $pendaftaran->id_ruang = $request->id_ruang;
+        $pendaftaran->id_kamar = $request->id_kamar;
+
         $pendaftaran->cara_bayar = $request->cara_bayar;
         $pendaftaran->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('pendaftaran.index');
     }
@@ -89,7 +104,9 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
-        return view('pendaftaran.show', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal'));
+        $kamar = Kamar::all();
+
+        return view('pendaftaran.show', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal', 'kamar'));
     }
 
     /**
@@ -104,7 +121,9 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
-        return view('pendaftaran.edit', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal'));
+        $kamar = kamar::all();
+
+        return view('pendaftaran.edit', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal', 'kamar'));
     }
 
     /**
@@ -126,6 +145,7 @@ class PendaftaranController extends Controller
             'jk' => 'required',
             'jadwal_periksa' => 'required',
             'id_ruang' => 'required',
+            'id_kamar' => 'required',
             'cara_bayar' => 'required',
         ]);
 
@@ -138,12 +158,11 @@ class PendaftaranController extends Controller
         $pendaftaran->jk = $request->jk;
         $pendaftaran->jadwal_periksa = $request->jadwal_periksa;
         $pendaftaran->id_ruang = $request->id_ruang;
+        $pendaftaran->id_kamar = $request->id_kamar;
+
         $pendaftaran->cara_bayar = $request->cara_bayar;
         $pendaftaran->save();
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Data saved successfully",
-        ]);
+        Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('pendaftaran.index');
 
@@ -157,8 +176,14 @@ class PendaftaranController extends Controller
      */
     public function destroy($id)
     {
-        $pendaftaran = Pendaftaran::findOrFail($id);
-        $pendaftaran->delete();
+        // $pendaftaran = Pendaftaran::findOrFail($id);
+        // $pendaftaran->delete();
+        // return redirect()->route('pendaftaran.index');
+        if (!Pendaftaran::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
         return redirect()->route('pendaftaran.index');
+
     }
 }

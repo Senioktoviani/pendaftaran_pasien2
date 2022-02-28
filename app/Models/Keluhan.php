@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Alert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,19 @@ class Keluhan extends Model
 
     public $timestamps = true;
 
-    public function keluhan()
+    public function pendaftaran()
     {
-        $this->hasMany('App\Models\Pendaftaran', 'id_keluhan');
+        return $this->hasMany('App\Models\Pendaftaran', 'id_keluhan');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($keluhan) {
+            if ($keluhan->pendaftaran->count() > 0) {
+                Alert::error('Failed', 'Data not deleted');
+                return false;
+            }
+        });
     }
 }
