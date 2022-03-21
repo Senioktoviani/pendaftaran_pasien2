@@ -90,7 +90,7 @@
                                                     <a href="{{ route('dokter.show', $data->id) }}"
                                                         class="btn btn-outline-warning">Show</a>
                                                     <button type="submit"
-                                                        class="btn btn-outline-danger delete-confirm">Delete</button>
+                                                        class="btn btn-danger delete-confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

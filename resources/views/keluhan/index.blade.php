@@ -84,7 +84,7 @@
                                                     <a href="{{ route('keluhan.show', $data->id) }}"
                                                         class="btn btn-outline-warning">Show</a>
                                                     <button type="submit"
-                                                        class="btn btn-danger-outline delete-confirm">Delete</button>
+                                                        class="btn btn-danger delete-confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
