@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\Models\JadwalDokter;
-use App\Models\Kamar;
+use App\Models\Kamars;
 use App\Models\Keluhan;
 use App\Models\Pendaftaran;
 use App\Models\Ruang;
@@ -33,7 +33,7 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
-        $kamar = Kamar::all();
+        $kamar = Kamars::all();
 
         $pendaftaran = Pendaftaran::all();
         return view('pendaftaran.create', compact('keluhan', 'ruang', 'jadwal', 'kamar'));
@@ -104,7 +104,7 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
-        $kamar = Kamar::all();
+        $kamar = Kamars::all();
 
         return view('pendaftaran.show', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal', 'kamar'));
     }
@@ -121,7 +121,7 @@ class PendaftaranController extends Controller
         $keluhan = Keluhan::all();
         $ruang = Ruang::all();
         $jadwal = JadwalDokter::all();
-        $kamar = kamar::all();
+        $kamar = kamars::all();
 
         return view('pendaftaran.edit', compact('pendaftaran', 'keluhan', 'ruang', 'jadwal', 'kamar'));
     }
