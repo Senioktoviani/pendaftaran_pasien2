@@ -31,6 +31,6 @@ class Pendaftaran extends Model
 
     public function kamar()
     {
-        return $this->belongsTo('App\Models\kamar', 'id_kamar');
+        return $this->belongsTo('App\Models\Kamars', 'id_kamar');
     }
 }

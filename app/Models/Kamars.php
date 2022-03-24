@@ -6,7 +6,7 @@ use Alert;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kamar extends Model
+class Kamars extends Model
 {
     use HasFactory;
     protected $table = "kamars";

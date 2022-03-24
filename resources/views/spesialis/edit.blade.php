@@ -16,7 +16,7 @@
                                     class="form-control @error('nama_spesialis') is-invalid @enderror">
                                 @error('nama_spesialis')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $messa  ge }}</strong>
                                     </span>
                                 @enderror
                             </div>
