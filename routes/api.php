@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\API\DataDokterController;
 use App\Http\Controllers\API\DataPendaftaranController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('keluhan2', ApiController::class);
 Route::resource('data_pendaftaran', DataPendaftaranController::class);
+Route::resource('data_dokter', DataDokterController::class);
