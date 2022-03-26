@@ -90,7 +90,7 @@ class DataJadwalController extends Controller
         $jadwal->delete();
         return response()->json([
             'success' => true,
-            'message' => 'Data jadwal Berhasil Dihapus',
+            'message' => 'Data jadwal Dokter Berhasil Dihapus',
             'data' => $jadwal,
         ], 200);
 
