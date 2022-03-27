@@ -52,13 +52,14 @@ class DataDokterController extends Controller
             'alamat' => 'required',
         ]);
 
-        $dokter = DataDokter::findOrFail($id);
+        $dokter = new DataDokter();
         $dokter->nik = $request->nik;
         $dokter->id_dokter = $request->id_dokter;
         $dokter->jk = $request->jk;
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
+
         Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('dokter.index');
@@ -109,13 +110,14 @@ class DataDokterController extends Controller
             'alamat' => 'required',
         ]);
 
-        $dokter = DataDokter::findOrFail($id);
+        $dokter = new DataDokter();
         $dokter->nik = $request->nik;
         $dokter->id_dokter = $request->id_dokter;
         $dokter->jk = $request->jk;
         $dokter->id_spesialis = $request->id_spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->save();
+
         Alert::success('Good Job', 'Data Saved Successfully');
 
         return redirect()->route('dokter.index');
@@ -130,8 +132,18 @@ class DataDokterController extends Controller
      */
     public function destroy($id)
     {
-        $dokter = DataDokter::findOrFail($id);
-        $dokter->delete();
+        if (!Datadokter::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
         return redirect()->route('dokter.index');
+
+// $dokter->delete();
+        // Session::flash("flash_notification", [
+        //     "level" => "success",
+        //     "message" => "Data deleted successfully",
+        // ]);
+        return redirect()->route('dokter.index');
+
     }
 }

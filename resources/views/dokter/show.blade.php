@@ -62,7 +62,7 @@
                             </div>
                             <div class="form-group">
 
-                                <a href="{{ route('keluhan.index') }}" class="btn btn-block btn-primary">Kembali</a>
+                                <a href="{{ route('dokter.index') }}" class="btn btn-block btn-primary">Kembali</a>
                             </div>
                         </form>
                     </div>

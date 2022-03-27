@@ -43,8 +43,12 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Masukan Jenis Kelamin</label>
-                                <input type="text" name="jk" class="form-control @error('jk') is-invalid @enderror">
+                                <label for="">Pilih Jenis Kelamin</label>
+                                <br>
+                                <input type="radio" name="jk" value="laki-laki"> Laki-laki
+                                <br>
+                                <input type="radio" name="jk" value="perempuan"> Perempuan
+                                <br>
                                 @error('jk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

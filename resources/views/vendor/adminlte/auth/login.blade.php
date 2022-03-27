@@ -86,6 +86,6 @@
 @stop
 
 @section('auth_footer')
-    
+
 
 @stop

@@ -17,7 +17,6 @@
 @endsection
 
 @section('js')
-
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script>
         $(".delete-confirm").click(function(event) {
@@ -64,7 +63,7 @@
                             <table class="table" id="example">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th>Lantai</th>
                                         <th>Nama Ruangan</th>
                                         <th>Aksi</th>
                                     </tr>
